@@ -37,15 +37,9 @@ function App() {
     e.preventDefault();
     setStop(true);
   }
-  function redirectStop() {
-    redirect();
-  }
-  let t = setTimeout(redirectStop, counter*1000);
   React.useEffect((t) => {
-    stop && clearTimeout(t);
-  }, [counter]);
-  React.useEffect(() => {
     !stop && counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    if (counter == 0) redirect();
   }, [counter]);
   const style = {
     "pointerEvents": 'none',
