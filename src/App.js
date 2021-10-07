@@ -62,7 +62,7 @@ function App() {
             <div id="i6ysh" class="countdown-row">
               <div id="ito3h" class="block cell">
                 <span id="iwpky" class="countdown-counter">{counter}</span>
-                <div>seconds</div>
+                <div>{ counter > 1 ? "seconds" : "second" }</div>
               </div>
               <div id="ii8ji" class="block cell">
                  <a style={ stop ? style : {} } href="#" onClick={handleStop} id="i80bo" class="gpd-link social-link stop-countdown">Stop</a>
