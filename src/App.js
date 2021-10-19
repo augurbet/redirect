@@ -53,7 +53,7 @@ function App() {
   }
   React.useEffect((t) => {
     !stop && counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
-    if (counter == 0) redirect();
+    if (counter == 0) redirect(0);
   }, [counter]);
   const style = {
     "pointerEvents": 'none',
