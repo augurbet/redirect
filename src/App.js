@@ -1,4 +1,6 @@
 import * as React from "react";
+import logo from './Reversed.png';
+import banner from './augur-sports.png';
 import './App.css';
 
 function App() {
@@ -18,20 +20,32 @@ function App() {
     }
     return str.join("&");
   }
+  const regex = /CIDv1: (.*?)\r\n/g;
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
   if (!('r' in params)) params['r'] = "0xC8846356F659c954996B5Da15353C5b36733b748";
-  function redirect() {
+  function redirect(index) {
     fetch('https://api.github.com/repos/AugurProject/turbo/releases/latest').then(T => T.json()).then(json => {
-      var url = "https://"+json["body"].match("(?<=CIDv1: )(.*)(?=)")[0]+".ipfs.dweb.link"+window.location.pathname;
-      if (Object.keys(params).length > 0) url = url+"?"+serialize(params);
-      url = url+window.location.hash;
-      window.location = url;
+      var matches = regex.exec(json["body"]);
+      var i = 0;
+      while (matches != null) {
+          if (index == i++) {
+            var url = "https://"+matches[1]+".ipfs.dweb.link"+window.location.pathname;
+            if (Object.keys(params).length > 0) url = url+"?"+serialize(params);
+            url = url+window.location.hash;
+            window.location = url;
+          }
+          matches = regex.exec(json["body"]);
+      }
     });
+  }
+  function handleRedirectSportsbook(e) {
+    e.preventDefault();
+    redirect(1);
   }
   function handleRedirect(e) {
     e.preventDefault();
-    redirect();
+    redirect(0);
   }
   function handleStop(e) {
     e.preventDefault();
@@ -44,13 +58,21 @@ function App() {
   const style = {
     "pointerEvents": 'none',
   }
+  const sportsStyle = {
+    "backgroundImage": 'url('+banner+')',
+    "background-size": "contain",
+    "background-repeat": "no-repeat",
+    "width": "100%",
+    "height": "0",
+    "padding-top": "155px",
+  }
   return (
     <div className="App">
       <section id="i5un" class="gpd-section">
         <div id="ialh" class="gpd-container">
           <div id="ipls"class="gdp-row">
             <div id="i5hl" class="cell">
-              <img id="in4dg" src="https://cdn.grapedrop.com/ue227d0fa634a4f36afc60c0280fbc988/e9a1d5140e22453c866b415f8af01195_white.png"/>
+              <img id="in4dg" src={logo}/>
             </div>
           </div>
         </div>
@@ -81,6 +103,15 @@ function App() {
             <div id="ii8ji" class="cell">
             </div>
           </div>
+        </div>
+      </section>
+      <section id="irzqg" class="gpd-section">
+        <div id="div-sports" style={sportsStyle} class="cell">
+          <a href="#" onClick={handleRedirectSportsbook} class="banner-link">
+            <div class="middle">
+              <a href="#" onClick={handleRedirectSportsbook} id="i80bo-sports" class="social-link">Redirect now</a>
+            </div>
+          </a>
         </div>
       </section>
       <section id="irzqg" class="gpd-section">
