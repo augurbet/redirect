@@ -60,7 +60,7 @@ function App() {
   }
   const sportsStyle = {
     "backgroundImage": 'url('+banner+')',
-    "background-size": "contain",
+    "background-size": "cover",
     "background-repeat": "no-repeat",
     "width": "100%",
     "height": "0",
