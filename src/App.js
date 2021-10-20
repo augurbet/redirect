@@ -107,11 +107,9 @@ function App() {
       </section>
       <section id="irzqg" class="gpd-section">
         <div id="div-sports" style={sportsStyle} class="cell">
-          <a href="#" onClick={handleRedirectSportsbook} class="banner-link">
             <div class="middle">
-              <a href="#" onClick={handleRedirectSportsbook} id="i80bo-sports" class="social-link">Redirect now</a>
+              <a href="#" onClick={handleRedirectSportsbook} id="i80bo-sports" class="social-link">Redirect to sportsbook</a>
             </div>
-          </a>
         </div>
       </section>
       <section id="irzqg" class="gpd-section">
